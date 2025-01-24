@@ -27,11 +27,17 @@ namespace HotelBooking.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create( Villa obj)
+        public IActionResult Create(Villa obj)
         {
-            _db.Villas.Add(obj);
-            _db.SaveChanges();
-             return  RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Villas.Add(obj);
+                _db.SaveChanges();
+                TempData["success"] = "The villa has been created successfully.";
+
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public IActionResult Update(int villaId)
@@ -48,6 +54,7 @@ namespace HotelBooking.Web.Controllers
         {
             _db.Villas.Update(obj);
             _db.SaveChanges();
+            TempData["success"] = "The villa has been updated successfully.";
             return RedirectToAction("Index");
         }
 
@@ -69,6 +76,8 @@ namespace HotelBooking.Web.Controllers
            {
                 _db.Villas.Remove(objFromDb);
                 _db.SaveChanges();
+                TempData["success"] = "The villa has been deleted successfully.";
+
                 return RedirectToAction("Index");
             }
             return View(); 
