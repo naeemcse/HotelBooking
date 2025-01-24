@@ -22,6 +22,7 @@ namespace HotelBooking.Domain.Entities
         public int Occupancy { get; set; }
         [NotMapped]
         //public IFormFile? Image { get; set; }
+
         public string? ImageUrl { get; set; }
         [Display(Name = "Image Url")]
         public DateTime? Created_Date { get; set; }
