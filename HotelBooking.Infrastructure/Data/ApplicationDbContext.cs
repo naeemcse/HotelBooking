@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+ 
 namespace HotelBooking.Infrastructure.Data
 {
     public class ApplicationDbContext:DbContext
@@ -14,6 +14,8 @@ namespace HotelBooking.Infrastructure.Data
         {
         }
         public DbSet<Villa> Villas { get; set; }
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -49,6 +51,53 @@ namespace HotelBooking.Infrastructure.Data
                         Sqft = 750,
                     });
 
+            modelBuilder.Entity<VillaNumber>().HasData(
+               new VillaNumber
+               {
+                   Villa_Number = 101,
+                   Id = 1,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 102,
+                   Id = 2,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 103,
+                   Id = 3,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 104,
+                   Id = 3,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 201,
+                   Id = 1,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 202,
+                   Id = 2,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 203,
+                   Id = 1,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 301,
+                   Id = 2,
+               },
+               new VillaNumber
+               {
+                   Villa_Number = 302,
+                   Id = 1,
+               }
+               );
 
         }
 

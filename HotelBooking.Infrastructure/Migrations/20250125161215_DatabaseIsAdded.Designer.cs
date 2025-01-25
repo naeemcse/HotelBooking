@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelBooking.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250119161626_dummyVillaData")]
-    partial class dummyVillaData
+    [Migration("20250125161215_DatabaseIsAdded")]
+    partial class DatabaseIsAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,6 +88,82 @@ namespace HotelBooking.Infrastructure.Migrations
                             Price = 400.0,
                             Sqft = 750
                         });
+                });
+
+            modelBuilder.Entity("HotelBooking.Domain.Entities.VillaNumber", b =>
+                {
+                    b.Property<int>("Villa_Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpecialDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Villa_Number");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("VillaNumbers");
+
+                    b.HasData(
+                        new
+                        {
+                            Villa_Number = 101,
+                            Id = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 102,
+                            Id = 2
+                        },
+                        new
+                        {
+                            Villa_Number = 103,
+                            Id = 3
+                        },
+                        new
+                        {
+                            Villa_Number = 104,
+                            Id = 3
+                        },
+                        new
+                        {
+                            Villa_Number = 201,
+                            Id = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 202,
+                            Id = 2
+                        },
+                        new
+                        {
+                            Villa_Number = 203,
+                            Id = 1
+                        },
+                        new
+                        {
+                            Villa_Number = 301,
+                            Id = 2
+                        },
+                        new
+                        {
+                            Villa_Number = 302,
+                            Id = 1
+                        });
+                });
+
+            modelBuilder.Entity("HotelBooking.Domain.Entities.VillaNumber", b =>
+                {
+                    b.HasOne("HotelBooking.Domain.Entities.Villa", "Villa")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Villa");
                 });
 #pragma warning restore 612, 618
         }
